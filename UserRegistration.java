@@ -8,7 +8,7 @@ public class UserRegistration {
     private static final String  LAST_NAME = "^[A-Z]{1}[a-z]{2,}$";
     private static final String  EMAIL =  "^[0-9a-zA-Z]+([.-_+][0-9a-zA-Z]+)@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})$";
     private static final String  PHONE_NUMBER = "^[1-9][0-9]+[ ]{0,1}+[1-9][0-9]{9}$";
-    private static final String  PASSWORD = "^[A-Z]{1}[a-z A-Z]{6,}+[0-9]{1,}+[!@#$%&*^]{1,}+[0-9]{1,}$";
+    private static final String  PASSWORD ="(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]{1,}).{8,}";
     static Scanner input=new Scanner(System.in);
 
     public static void main(String[]args)
@@ -17,7 +17,7 @@ public class UserRegistration {
             chooseOption();
     }
     public static void chooseOption(){
-        System.out.println("Options are: \n 1.First-Name    2.Last-Name    3.Email-id    4.Phonenumber");
+        System.out.println("Options are: \n 1.First-Name    2.Last-Name    3.Email-id    4.Phonenumber      5.Password");
         System.out.println("Enter option to check Regex Pattern");
         int inputOption = input.nextInt();
          switch (inputOption){
@@ -33,6 +33,9 @@ public class UserRegistration {
              case 4 : System.out.println("Enter your Phone Number");
                       String phoneNumber=input.next();
                       PhonenumberRegex(phoneNumber);
+             case 5 : System.out.println("Enter your Password");
+                      String password=input.next();
+                      PasswordRegex(password);
              default:
                      System.out.println("\nEnter a valid Option");
                      break;
@@ -53,6 +56,10 @@ public class UserRegistration {
     public static void PhonenumberRegex(String phoneNumber){
         boolean Result = phoneNumber.matches(PHONE_NUMBER);
         System.out.println("\nResult " + Result + "\nPhone Number: " + phoneNumber );
+    }
+    public static void PasswordRegex(String password){
+        boolean Result = password.matches(PASSWORD);
+        System.out.println("\nResult " + Result + "\nPassword: " + password );
     }
 
 }
